@@ -26,7 +26,7 @@
 		<br />
 		<table>
 			<tr>
-				<th align="center">Datos - Otro Número</th>
+				<th align="center" colspan="2">Datos - Otro Número</th>
 			</tr>
 			<tr>
 				<td align="center"><img src="./virgin_3.jpg"></td>
@@ -41,7 +41,7 @@
 		<br />
 		<table>
 			<tr>
-				<th align="center">Datos - Historial otro número</th>
+				<th align="center" colspan="2">Datos - Historial otro número</th>
 			</tr>
 			<tr>
 				<td align="center"><img src="./virgin_5.jpg"></td>
@@ -53,7 +53,7 @@
 		<br />
 		<table>
 			<tr>
-				<th align="center">Datos - Historial otro número</th>
+				<th align="center" colspan="2">Datos - Historial otro número</th>
 			</tr>
 			<tr>
 				<td align="center"><img src="./virgin_7.jpg"></td>
@@ -65,7 +65,7 @@
 		<br />
 		<table>
 			<tr>
-				<th align="center">Datos - Envío por correo</th>
+				<th align="center" colspan="3">Datos - Envío por correo</th>
 			</tr>
 			<tr>
 				<td align="center"><img src="./virgin_9.jpg"></td>
@@ -80,7 +80,7 @@
 		<br />
 		<table>
 			<tr>
-				<th align="center">Datos - Envío por correo</th>
+				<th align="center" colspan="2">Datos - Envío por correo</th>
 			</tr>
 			<tr>
 				<td align="center"><img src="./virgin_12.jpg"></td>
