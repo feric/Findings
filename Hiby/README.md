@@ -6,5 +6,5 @@
 	<p>I created this repo is to show my findings on my Hiby R3 Saber Pro device.</p>
 	<p>The analysis was conducted to a Hiby R3 Pro saber firmware, the device is a portable music player from Hiby vendor.The Firmware version analyzed is <b>Pro v1.5</b> and can be downloaded at:</p>
 	<a href="https://drive.google.com/drive/folders/1IUk1GZIR6TofowUjEew5L7Mh5yQ98TMF?usp=sharing" target="_blank">https://drive.google.com/drive/folders/1IUk1GZIR6TofowUjEew5L7Mh5yQ98TMF?usp=sharing"</a>
-	<br/><img width="50%" height="50%" src="./hiby_1.jpg"></img>
+	<br /><br /><img width="50%" height="50%" src="./hiby_1.jpg"></img>
 </body>
