@@ -35,7 +35,6 @@
 		</table>
 		<br />
 		<p><b>Nótese que</b>, al cambiar el número telefónico por el de otro usuario, en la aplicación se visualiza la información asociada al número de la cuenta de Virgin Mobile.
-
 		<p>Por otra parte, al consultar el historial de llamadas se observa el mismo comportamiento.
 		<br />Las siguientes capturas de pantalla muestran el proceso de visualización y envío del historial de llamadas a un correo electrónico: La siguiente imagen es el historial de llamadas de mi propia cuenta, y como se observa, no cuento con detalles de llamadas.
 		</p>
