@@ -13,7 +13,7 @@
 				<th align="center">Download Page</th>
 			</tr>
 			<tr>
-				<td align="center"><img width="50%" height="50%" src="./hiby_1.jpg"></img></td>
+				<td align="center"><img width="50%" height="50%" src="./hiby_1.png"></img></td>
 			</tr>
 		</table>
 		<br />
