@@ -1,14 +1,15 @@
 
 # Firmware and File System
-___
-### Mount the file system
+### Extracting the File System
 Once downloaded the Hiby firmware, it's possible to identify what kind of file it is by running <b>file</b> command</p>
 File Command |
 -|
 ![Hiby File Command](./hibyFS_1.png)|
+
 As shown in the above screenshot, the **r3pro.upt** is a ISO 9660 CD-ROM filesystem which it's possible to mount it using the following command
 `sudo mount -t iso9660 ./r3pro.upt <dst folder> `
 The mounted file system contains several files used to flash the Hiby R3, it contains a boot system, a File system, etc.
+
 Content of File System |
 -|
 ![Hiby File Command](./hibyFS_2.png)|
@@ -16,7 +17,9 @@ The **system.ubi** contains whole the File System of the device, the FS regards 
 File type of system.ubi |
 -|
 ![Hiby File Command](./hibyFS_3.png)|
+
 ___
+### Mounting the File System
 In order to mount and access to the File System, some dependencies must be insalled
 `$ apt install mtd-utils`
 
