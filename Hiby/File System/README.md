@@ -13,7 +13,9 @@ The mounted file system contains several files used to flash the Hiby R3, it con
 Content of File System |
 -|
 ![Hiby File Command](./hibyFS_2.png)|
+
 The **system.ubi** contains whole the File System of the device, the FS regards to a UBIFS, a file system specifically made for work in Flash memories.
+
 File type of system.ubi |
 -|
 ![Hiby File Command](./hibyFS_3.png)|
