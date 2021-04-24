@@ -1,4 +1,6 @@
+
 #Firmware and File System
+___
 ###Mount the file system
 Once downloaded the Hiby firmware, it's possible to identify what kind of file it is by running <b>file</b> command</p>
 File Command |
