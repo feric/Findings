@@ -52,7 +52,7 @@ Take a look at lines from 120 to 130 of the following screenshot
 
 JQuery - List files Section |
 -|
-![Hiby JQuery](./images/hibyFS_7.png)|
+![Hiby JQuery](./images/http_hiby_7.png)|
 
 The path must be a valid string and it's verified in the **_isRoot** function, check line 134
 
@@ -60,7 +60,7 @@ The screenshot below shows the **_isRoot** function which verifies if the path s
 
 JQuery - List files Section |
 -|
-![Hiby JQuery](./images/hibyFS_8.png)|
+![Hiby JQuery](./images/http_hiby_7.png)|
 
 This means, in order to list a folder, the path variable must begin with /mnt/
 
@@ -75,7 +75,7 @@ Now that I had access to the File System, I noticed the Web application's files 
 
 Web Application Files |
 -|
-![Hiby Webapp Files](./images/hibyFS_9.png)|
+![Hiby Webapp Files](./images/http_hiby_7.png)|
 
 The Path Traversal vulnerability was identified in **list** resource, so I decided to analyse the list.cgi file.
 
@@ -83,19 +83,19 @@ As shown below, the list.cgi file was compiled for MIPS32 architecture, i decide
 
 Type of list.cgi |
 -|
-![Hiby type of list.cgi](./images/hibyFS_10.png)|
+![Hiby type of list.cgi](./images/http_hiby_7.png)|
 
 The following image shows the firsts instructions of the **Main** function, which receives the HTTP headers and parses the requests
 
 Main Function |
 -|
-![Hiby Main function of list.cgi](./images/hibyFS_11.png)|
+![Hiby Main function of list.cgi](./images/http_hiby_7.png)|
 
 Immediately then transfers the flow to **cgiMain** function using the `jal cgiMain` instruction.
 
 Calling cgiMain |
 -|
-![Hiby Calling cgiMain](./images/hibyFS_12.png)|
+![Hiby Calling cgiMain](./images/http_hiby_7.png)|
 
 ####cgiMain Function
 
@@ -103,20 +103,20 @@ Once the control has been passed to cgiMain, the function searches for path vari
 
 cgiMain Instructions|
 -|
-![Hiby cgiMain inst](./images/hibyFS_13.png)|
+![Hiby cgiMain inst](./images/http_hiby_7.png)|
 
 The highlighted in blue instruction (0x004011C0) loads the memory address of **cgiQueryString** variable into $v0 variable. After that, it moves the content from $v0 to $a0 (0x004011C8 instruction).
 
 cgiMain Instructions|
 -|
-![Hiby cgiMain inst](./images/hibyFS_14.png)|
+![Hiby cgiMain inst](./images/http_hiby_7.png)|
 
 The above highlighted instructions (0x004011CC) performs a load upper immediate, this means that it's going to take the upper 16 bits of the string, the 0x41 value is converted to 0x41000 and stored into $v0, then, it's performed a subtraction between the address of aPath variable minus 0x41000.
 Immediately, there is an addition instruction (0x004011D0) between the last value and $v0, the $a1 variable contains the address of **aPath**, which contains the string of the parameter **path=**.
 
 cgiMain Instructions|
 -|
-![Hiby cgiMain inst](./images/hibyFS_15.png)|
+![Hiby cgiMain inst](./images/http_hiby_7.png)|
 
 Finally, the registers $a0 and $a1 are the arguments of **strstr** function (0x004011D4), the pseudocode looks like this
 
@@ -129,13 +129,13 @@ The strstr functions finds the first coincidence in a string and stores into $v0
 
 cgiMain Instructions|
 -|
-![Hiby cgiMain inst](./images/hibyFS_16.png)|
+![Hiby cgiMain inst](./images/http_hiby_16.png)|
 
 The following instruction (0x004011D4) `sw $v0, 0x20+path($fp)`, stores the content of $v0 (path string) into memory address at 0x20+path($fp). Immediately, the content of the memory 0x20+path($fp) is loaded into $v0. Why is doing this?, honestly i don't know.
 
 cgiMain Instructions|
 -|
-![Hiby cgiMain inst](./images/hibyFS_13.png)|
+![Hiby cgiMain inst](./images/http_hiby_13.png)|
 
 ####Analyzing path variable
 #####loc_401218 Subroutine
@@ -143,7 +143,7 @@ The flow has been transfered to subroutine **loc_401218**, the purpose of this i
 
 cgiMain loc_401218|
 -|
-![Hiby cgiMain loc_401218](./images/hibyFS_17.png)|
+![Hiby cgiMain loc_401218](./images/http_hiby_17.png)|
 
 The code of subroutine loc_401218 is like the follow
 
@@ -168,7 +168,7 @@ The following section describes the behavior of _contain_root_ function
 
 cgiMain contain_root|
 -|
-![Hiby cgiMain contain_root](./images/hibyFS_18.png)|
+![Hiby cgiMain contain_root](./images/http_hiby_18.png)|
 
 Following with the instructions of this subroutine, the `0x00409020` just loads the path string into $a0 register and the next 2 instructions just loads the content of **_roots** string into $a1, it's worth mentioning the `_roots` string has a similar content as shown in the client-side analysis section, and contains the **/mnt** string.
 
@@ -184,20 +184,20 @@ Finally the `0x00409028` instruction performs a call to **_contains** function.
 
 cgiMain \_roots string|
 -|
-![Hiby cgiMain \_roots](./images/hibyFS_19.png)|
+![Hiby cgiMain \_roots](./images/http_hiby_19.png)|
 
 #####\_contains Function
 Now the \_contains function is called, they were passed both strings path and /mnt and the path to list.
 
 cgiMain \contains function|
 -|
-![Hiby cgiMain \_contains](./images/hibyFS_20.png)|
+![Hiby cgiMain \_contains](./images/http_hiby_20.png)|
 
 This function just compares the path supplied in the request and the /mnt string, the key block is the subroutine loc_408e70
 
 cgiMain \contains function|
 -|
-![Hiby cgiMain \_contains](./images/hibyFS_21.png)|
+![Hiby cgiMain \_contains](./images/http_hiby_21.png)|
 
 ```
 .text:00408E70 loc_408E70:                              # CODE XREF: _contains+80↓j
@@ -218,48 +218,10 @@ The instruction `0x00408E80` performs a string compare between **S1 ("/mnt/")** 
 
 cgiMain \contains function|
 -|
-![Hiby cgiMain \_contains](./images/hibyFS_22.png)|
+![Hiby cgiMain \_contains](./images/http_hiby_22.png)|
 
 As $v0 is 1, when returns to cgiMain, it takes the branch to **loc_401274**, the following subroutines just open the directory and list the content of the folder.
 
 cgiMain \contains function|
 -|
-![Hiby cgiMain \_contains](./images/hibyFS_23.png)|
-
-
-
-
-
-
-
-
-
-
-
-`sudo mount -t iso9660 ./r3pro.upt <dst folder> `
-
-`$ apt install mtd-utils`
-
-Once the dependencies have been covered, the UBIFS format requires to create a flash memory.
-Visit the following URL for more information <https://gist.github.com/kostaz/6ce4034192ac3a0f08ec3e279c81d0b8>
-
-Here is a script that contains the commands to automate the Flash memory creation and mounting on it
-```
-#!/bin/bash
-# size of created mtd is 256.0 MiB
-modprobe nandsim first_id_byte=0x2c second_id_byte=0xda third_id_byte=0x90 fourth_id_byte=0x95
-flash_erase /dev/mtd0 0 0
-ubiformat /dev/mtd0 -s 2048 -O 2048
-modprobe ubi
-ubiattach -m 0 -d 0 -O 2048
-# set $(SIZE) to value more than size of the ubifs filesystem
-#ubimkvol /dev/ubi0 -N volname -s $(SIZE)
-ubimkvol /dev/ubi0 -N volname -s 50MiB
-#ubiupdatevol /dev/ubi0_0 $(UBIFS)
-ubiupdatevol /dev/ubi0_0 /home/feric/Documents/HibyR3/Image_Files/system.ubi
-mount -t ubifs /dev/ubi0_0 /home/feric/Documents/HibyR3/HibyFS/
-```
-Once executed the script, the UBIFS is accessible as shown below
-Mounted FS|
--|
-![Hiby File Command](./hibyFS_4.png)|
+![Hiby cgiMain \_contains](./images/http_hiby_23.png)|
