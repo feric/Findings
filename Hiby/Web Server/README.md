@@ -1,4 +1,6 @@
-#Section for HTTP findings
+# Section for HTTP findings
 ___
-* Path Traversal
+- [x] Path Traversal
+- [ ] Obtaining sensitive information
+- [ ] File Upload
 
