@@ -65,6 +65,7 @@ JQuery - List files Section |
 This means, in order to list a folder, the path variable must begin with /mnt/
 
 ___
+
 ## Static Analysis
 ### Server-Side Validation
 
