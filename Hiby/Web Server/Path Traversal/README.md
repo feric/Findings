@@ -2,9 +2,8 @@
 ## Dynamic Analysis
 The Hiby device allows to transfer files over an HTTP service, the HTTP server is activated by selecting Import Music via Wi-Fi from main menu, once done, it shown an image like the following
 
-HTTP server enabled |
--|
-![Hiby File Command](./images/http_hiby_1.jpg)|
+HTTP server enabled
+<img src="./images/http_hiby_1.jpg" width="50%" height="50%"> </img>
 
 As shown in the following screenshot, once the HTTP server has been enabled, it is accessible using a web browser at port 4399
 
@@ -60,7 +59,7 @@ The screenshot below shows the **_isRoot** function which verifies if the path s
 
 JQuery - List files Section |
 -|
-![Hiby JQuery](./images/http_hiby_7.png)|
+![Hiby JQuery](./images/http_hiby_8.png)|
 
 This means, in order to list a folder, the path variable must begin with /mnt/
 
@@ -75,7 +74,7 @@ Now that I had access to the File System, I noticed the Web application's files 
 
 Web Application Files |
 -|
-![Hiby Webapp Files](./images/http_hiby_7.png)|
+![Hiby Webapp Files](./images/http_hiby_9.png)|
 
 The Path Traversal vulnerability was identified in **list** resource, so I decided to analyse the list.cgi file.
 
@@ -83,19 +82,19 @@ As shown below, the list.cgi file was compiled for MIPS32 architecture, i decide
 
 Type of list.cgi |
 -|
-![Hiby type of list.cgi](./images/http_hiby_7.png)|
+![Hiby type of list.cgi](./images/http_hiby_10.png)|
 
 The following image shows the firsts instructions of the **Main** function, which receives the HTTP headers and parses the requests
 
 Main Function |
 -|
-![Hiby Main function of list.cgi](./images/http_hiby_7.png)|
+![Hiby Main function of list.cgi](./images/http_hiby_11.png)|
 
 Immediately then transfers the flow to **cgiMain** function using the `jal cgiMain` instruction.
 
 Calling cgiMain |
 -|
-![Hiby Calling cgiMain](./images/http_hiby_7.png)|
+![Hiby Calling cgiMain](./images/http_hiby_12.png)|
 
 ####cgiMain Function
 
@@ -103,20 +102,20 @@ Once the control has been passed to cgiMain, the function searches for path vari
 
 cgiMain Instructions|
 -|
-![Hiby cgiMain inst](./images/http_hiby_7.png)|
+![Hiby cgiMain inst](./images/http_hiby_13.png)|
 
 The highlighted in blue instruction (0x004011C0) loads the memory address of **cgiQueryString** variable into $v0 variable. After that, it moves the content from $v0 to $a0 (0x004011C8 instruction).
 
 cgiMain Instructions|
 -|
-![Hiby cgiMain inst](./images/http_hiby_7.png)|
+![Hiby cgiMain inst](./images/http_hiby_14.png)|
 
 The above highlighted instructions (0x004011CC) performs a load upper immediate, this means that it's going to take the upper 16 bits of the string, the 0x41 value is converted to 0x41000 and stored into $v0, then, it's performed a subtraction between the address of aPath variable minus 0x41000.
 Immediately, there is an addition instruction (0x004011D0) between the last value and $v0, the $a1 variable contains the address of **aPath**, which contains the string of the parameter **path=**.
 
 cgiMain Instructions|
 -|
-![Hiby cgiMain inst](./images/http_hiby_7.png)|
+![Hiby cgiMain inst](./images/http_hiby_15.png)|
 
 Finally, the registers $a0 and $a1 are the arguments of **strstr** function (0x004011D4), the pseudocode looks like this
 
