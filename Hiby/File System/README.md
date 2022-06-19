@@ -22,13 +22,13 @@ File type of system.ubi |
 
 ___
 ### Mounting the File System
-In order to mount and access to the File System, some dependencies must be insalled
+In order to mount and access to the File System, some dependencies must be installed: 
 `$ apt install mtd-utils`
 
 Once the dependencies have been covered, the UBIFS format requires to create a flash memory.
-Visit the following URL for more information <https://gist.github.com/kostaz/6ce4034192ac3a0f08ec3e279c81d0b8>
+Check the following URL for more details <https://gist.github.com/kostaz/6ce4034192ac3a0f08ec3e279c81d0b8>
 
-Here is a script that contains the commands to automate the Flash memory creation and mounting on it
+Below is a script containing the required commands to automate the Flash memory creation as well as mounting the File system
 ```
 #!/bin/bash
 # size of created mtd is 256.0 MiB
