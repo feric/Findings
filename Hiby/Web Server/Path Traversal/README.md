@@ -2,8 +2,9 @@
 ## Dynamic Analysis
 The Hiby device allows to transfer files over an HTTP service, the HTTP server is activated by selecting Import Music via Wi-Fi from main menu, once done, it shown an image like the following
 
-HTTP server enabled
-<img src="./images/http_hiby_1.jpg" width="50%" height="50%"> </img>
+HTTP server enabled |
+-|
+![Hiby server enabled](./images/http_hiby_1.png)|
 
 As shown in the following screenshot, once the HTTP server has been enabled, it is accessible using a web browser at port 4399
 
