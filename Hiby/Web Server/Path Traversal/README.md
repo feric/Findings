@@ -4,7 +4,7 @@ The Hiby device allows to transfer files over an HTTP service, the HTTP server i
 
 HTTP server enabled |
 -|
-![Hiby server enabled](./images/http_hiby_1.png)|
+![Hiby server enabled](./images/http_hiby_1.jpg)|
 
 As shown in the following screenshot, once the HTTP server has been enabled, it is accessible using a web browser at port 4399
 
