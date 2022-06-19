@@ -2,5 +2,4 @@
 ___
 - [x] Path Traversal
 - [x] Obtaining sensitive information
-- [ ] File Upload
-
+- [x] Arbitrary File Upload - Remote Code Execution
